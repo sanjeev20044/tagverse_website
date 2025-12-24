@@ -2,10 +2,12 @@
 
 import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { Github, Twitter, Linkedin, Instagram, X } from 'lucide-react';
+import { Github, Twitter, Linkedin, Instagram, X, Facebook } from 'lucide-react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
+import { usePathname } from 'next/navigation';
 
 const Footer = () => {
+    const pathname = usePathname();
     const videoRef = useRef<HTMLVideoElement>(null);
 
     useEffect(() => {
@@ -36,6 +38,17 @@ const Footer = () => {
         return () => observer.disconnect();
     }, []);
 
+    const socialLinks = [
+        { icon: <Linkedin size={18} />, href: '#', key: 'li' },
+        { icon: <Facebook size={18} />, href: 'https://m.facebook.com/61584759519825/', key: 'fb' },
+        { icon: <Instagram size={18} />, href: '#', key: 'in' },
+    ];
+
+    // Hide public footer on all admin routes
+    if (pathname?.startsWith('/admin')) {
+        return null;
+    }
+
     return (
         <footer className="relative overflow-hidden bg-[#0b0f1a] text-[#E8EAF6] mt-auto">
             {/* Video Background Layer */}
@@ -63,7 +76,7 @@ const Footer = () => {
                             <span className="text-xl font-serif text-white tracking-tight">TagVerse</span>
                         </div>
                         <p className="text-white/60 text-sm leading-loose font-light">
-                            An enterprise solutions provider of rare intelligence and vision. Wielding the power of AI with masterful restraint.
+                            TagVerse: An enterprise solutions provider of rare intelligence and vision. Wielding the power of AI with masterful restraint.
                         </p>
                     </ScrollReveal>
 
@@ -92,20 +105,26 @@ const Footer = () => {
 
                     <ScrollReveal className="col-span-1 footer-col" delay={300}>
                         <h4 className="font-semibold text-white mb-8 tracking-widest text-[10px] uppercase opacity-80">Connect</h4>
-                        <div className="text-sm text-white/50 font-light mb-4 hover:text-white transition-colors cursor-pointer">Tagverse.iio@gmail.com </div>
+                        <div className="text-sm text-white/50 font-light mb-4 hover:text-white transition-colors cursor-pointer">Tagverse.io@gmail.com </div>
                         <div className="text-sm text-white/50 font-light mb-8">+91 99419 68238</div>
                         <div className="flex gap-4">
-                            {[<Linkedin key="l" size={18} />, <X key="t" size={18} />, <Instagram key="g" size={18} />].map((icon, i) => (
-                                <div key={i} className="w-10 h-10 rounded-full border border-white/10 bg-white/5 hover:border-white/30 hover:bg-white/10 hover:text-white transition-all duration-500 cursor-pointer flex items-center justify-center text-white/40 backdrop-blur-sm">
-                                    {icon}
-                                </div>
+                            {socialLinks.map((social) => (
+                                <Link
+                                    key={social.key}
+                                    href={social.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="w-10 h-10 rounded-full border border-white/10 bg-white/5 hover:border-white/30 hover:bg-white/10 hover:text-white transition-all duration-500 cursor-pointer flex items-center justify-center text-white/40 backdrop-blur-sm"
+                                >
+                                    {social.icon}
+                                </Link>
                             ))}
                         </div>
                     </ScrollReveal>
                 </div>
 
                 <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 footer-bottom">
-                    <p className="text-xs text-white/30 font-light tracking-wide">© 2025 TagVerse.io. All rights reserved.</p>
+                    <p className="text-xs text-white/30 font-light tracking-wide">© 2025 tagverse.io. All rights reserved.</p>
                     <p className="text-xs text-white/30 font-light tracking-wide">Designed with silence and precision.</p>
                 </div>
             </div>

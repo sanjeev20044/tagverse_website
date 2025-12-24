@@ -68,7 +68,14 @@ const AnimatedBackground = () => {
             />
 
             {/* Overlay Mesh Pattern (Optional to give texture) */}
-            <div className="absolute inset-0 bg-[url('/assets/grid.svg')] opacity-[0.02] mix-blend-overlay" />
+            {/* Overlay Mesh Pattern (CSS Grid) */}
+            <div
+                className="absolute inset-0 opacity-[0.03] animate-pulse"
+                style={{
+                    backgroundImage: 'radial-gradient(circle, #000 1px, transparent 1px)',
+                    backgroundSize: '32px 32px'
+                }}
+            />
         </div>
     );
 };

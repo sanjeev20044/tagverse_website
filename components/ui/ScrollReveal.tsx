@@ -66,7 +66,7 @@ const ScrollReveal = React.forwardRef<HTMLDivElement, ScrollRevealProps>(({
             whileInView="visible"
             viewport={{ once: true, amount: 0.05 }} // Trigger when 10% visible
             variants={variants}
-            className={`${className} ${fullWidth ? 'w-full' : ''}`}
+            className={`relative ${className} ${fullWidth ? 'w-full' : ''}`}
             {...props}
         >
             {children}

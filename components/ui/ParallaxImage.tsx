@@ -31,10 +31,11 @@ const ParallaxImage = ({ src, alt, className = '', speed = 0.2 }: ParallaxImageP
                  But user has next/image available. Let's stick to simple video/div for now if src is not an Next image object 
                  Wait, the user uses video backgrounds mostly. But for standard images:
              */}
-                <img
+                <Image
                     src={src}
                     alt={alt}
-                    className="w-full h-full object-cover"
+                    fill
+                    className="object-cover"
                 />
             </motion.div>
 

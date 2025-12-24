@@ -11,6 +11,11 @@ const Navbar = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const pathname = usePathname();
 
+    // Hide public navbar on all admin routes
+    if (pathname?.startsWith('/admin')) {
+        return null;
+    }
+
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 20);
         window.addEventListener('scroll', handleScroll);
